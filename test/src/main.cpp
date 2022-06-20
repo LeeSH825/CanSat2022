@@ -61,6 +61,10 @@ struct sensor_packet {
   int temperature;
 };
 
+struct cam_info {
+  unsigned int cam_raw_data;
+};
+
 struct tx_packet {
   byte change_rf_mode;
 
@@ -116,10 +120,6 @@ void setRF_Mode(char mode) {
     Serial.println("Wrong Command!");
 }
 
-void sendData() {
-
-}
-
 ctrl_info getCTRL() {
   ctrl_packet received;
   ctrl_info ret;
@@ -134,7 +134,7 @@ ctrl_info getCTRL() {
     ret.pos_servo2 = received.pos_servo2;
 
     //받은 정보 출력
-    serial.println("Packet Received:");
+    Serial.println("Packet Received:");
     Serial.print("servo1: ");
     Serial.println(ret.pos_servo1);
     Serial.print("servo2: ");
@@ -151,9 +151,9 @@ ctrl_info getCTRL() {
 void adjustMotor(ctrl_info data) {
   servo1.write(data.pos_servo1);
   servo2.write(data.pos_servo2);
-  Serial.print("Servo Motor1 angle:")
+  Serial.print("Servo Motor1 angle:");
   Serial.println(data.pos_servo1);
-  Serial.print("Servo Motor1 angle:")
+  Serial.print("Servo Motor1 angle:");
   Serial.println(data.pos_servo2);
 }
 
@@ -161,14 +161,25 @@ sensor_info getSensors() {
 
 }
 
-tx_packet add_packet() {
-
+tx_packet add_packet(tx_packet *tx_data, sensor_info sensor_data) {
+  tx_data->accel_x = sensor_data.accel_x;
+  tx_data->accel_y = sensor_data.accel_y;
+  tx_data->accel_z = sensor_data.accel_z;
+  tx_data->gyro_x = sensor_data.gyro_x;
+  tx_data->gyro_y = sensor_data.gyro_y;
+  tx_data->gyro_z = sensor_data.gyro_z;
+  tx_data->temperature = sensor_data.tempetature;
 }
 
-void sendPacket(sensor_info transmit) {
+tx_packet add_packet(tx_packet *tx_data, cam_info cam_data) {
+  tx_data->cam_raw_data = cam_data.cam_raw_data;
+}
+
+void sendPacket(tx_packet transmit) {
   if (rf_mode != 1)
     setRF_Mode('t');
-  radio.write(&transmit, sizeof(sensor_info));
+  radio.write(&transmit, sizeof(tx_packet));
+  setRF_Mode('r');
 }
 
 void setup() {
@@ -176,27 +187,32 @@ void setup() {
   radio.begin();
   radio.setPALevel(POWER_MODE);
   #ifdef CANSAT
-  // 처음 시작은 Tx모드로 
-  setRF_Mode('t');
+  // 처음 시작은 Rx모드로 
+  setRF_Mode('r');
   servo1.attach(SERVO1_PIN);
   servo2.attach(SERVO2_PIN);
   #endif
 
   #ifdef STATION
-  // 처음 시작은 Rx 모드로
-  setRF_Mode('r');
+  // 처음 시작은 Tx 모드로
+  setRF_Mode('t');
   #endif
   // setRF_Mode()
 }
 void loop() {
   ctrl_info ctrl_data;
   sensor_info sensor_data;
+  cam_info cam_data;
   tx_packet tx_data;
 
   ctrl_data = getCTRL();
   adjustMotor(ctrl_data);
+
   sensor_data = getSensors();
   //cam_data = getCam();
-  tx_data = add_packet(sensor_data);
+
+  add_packet(&tx_data, sensor_data);
+  //add_packet(&tx_data, cam_data);
+
   sendPacket(tx_data);
 }
