@@ -145,7 +145,9 @@ ctrl_info getCTRL() {
       rf_mode = !(rf_mode);
       setRF_Mode('t');
     }
+    //return ret;
   }
+  return ret;
 }
 
 void adjustMotor(ctrl_info data) {
@@ -158,7 +160,15 @@ void adjustMotor(ctrl_info data) {
 }
 
 sensor_info getSensors() {
+  sensor_info temp;
+  temp.accel_x = 1;
+  temp.accel_y = 1;
+  temp.accel_z = 1;
+  temp.gyro_x = 1;
+  temp.gyro_y = 1;
+  temp.gyro_z = 1;
 
+  return temp;
 }
 
 tx_packet add_packet(tx_packet *tx_data, sensor_info sensor_data) {
