@@ -4,6 +4,8 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 #include <Servo.h>
+#include <string.h>
+// #include <string>
 
 // constexpr int c_strcmp( char const* lhs, char const* rhs )
 // {
@@ -22,14 +24,14 @@
 // #endif
 
 //Flags
-#define STATION
+// #define STATION
 #define CANSAT
 
-#define CE_PIN 8
-#define CSN_PIN 10
+#define CE_PIN 7
+#define CSN_PIN 8
 
-#define SERVO1_PIN 3
-#define SERVO2_PIN 4
+#define SERVO1_PIN 6
+#define SERVO2_PIN 3
 
 #define POWER_MODE RF24_PA_MIN
 
@@ -95,6 +97,7 @@ struct ctrl_packet {
 // Pin Configuration
 // RF24 radio(8, 10); // CE: Digital(8), CSN: Digital(10)
 RF24 radio(CE_PIN, CSN_PIN);
+// RF24 radio(2, 3);
 Servo servo1, servo2;
 
 // Common Variable
@@ -155,7 +158,7 @@ void adjustMotor(ctrl_info data) {
   servo2.write(data.pos_servo2);
   Serial.print("Servo Motor1 angle:");
   Serial.println(data.pos_servo1);
-  Serial.print("Servo Motor1 angle:");
+  Serial.print("Servo Motor2 angle:");
   Serial.println(data.pos_servo2);
 }
 
@@ -190,12 +193,54 @@ void sendPacket(tx_packet transmit) {
     setRF_Mode('t');
   radio.write(&transmit, sizeof(tx_packet));
   setRF_Mode('r');
+  Serial.println("Sent:");
+}
+  // int servo1pos, servo2pos;
+ctrl_info getCTRLfromSerial() {
+  int servo1pos = 0;
+  int servo2pos = 0;
+  String pos1, pos2;
+  if (Serial.available()){
+    Serial.println("Servo1:");
+    // servo1pos = Serial.parseInt();
+    // servo1pos = Serial.read();
+    delay(100);
+    pos1 = Serial.readStringUntil('\n');
+    delay(100);
+    servo1pos = atoi(pos1.c_str());
+    Serial.println(servo1pos);
+  }
+  delay(1000);
+  if (Serial.available()){
+    Serial.println("Servo2:");
+    // servo2pos = Serial.parseInt();
+    // servo2pos = Serial.read();
+    delay(100);
+    pos2 = Serial.readStringUntil('\n');
+    delay(100);
+    servo2pos = atoi(pos2.c_str());
+    Serial.println(servo2pos);
+  }
+  delay(1000);
+  ctrl_info ret;
+  ret.pos_servo1 = servo1pos;
+  ret.pos_servo1 = servo2pos;
+
+  rf_mode = !(rf_mode);
+  setRF_Mode('t');
+
+  return (ret);
 }
 
 void setup() {
   Serial.begin(9600);
+
   radio.begin();
   radio.setPALevel(POWER_MODE);
+  if (radio.isChipConnected())
+    Serial.println("RF Connected");
+  else
+    Serial.println("RF\\\\\ not Connected!!");
   #ifdef CANSAT
   // 처음 시작은 Rx모드로 
   setRF_Mode('r');
@@ -209,13 +254,20 @@ void setup() {
   #endif
   // setRF_Mode()
 }
+
+
+
 void loop() {
   ctrl_info ctrl_data;
   sensor_info sensor_data;
   cam_info cam_data;
   tx_packet tx_data;
 
-  ctrl_data = getCTRL();
+
+  // ctrl_data = getCTRL();
+  // 임시
+  ctrl_data = getCTRLfromSerial();
+
   adjustMotor(ctrl_data);
 
   sensor_data = getSensors();
@@ -226,3 +278,19 @@ void loop() {
 
   sendPacket(tx_data);
 }
+
+// void serial_loop() {
+//   // int servo1pos, servo2pos;
+//   if (Serial.available() > 0 ){
+//   Serial.println("Servo1:");
+//   // servo1pos = Serial.parseInt();
+//   servo1pos = Serial.read();
+//   Serial.println(servo1pos);
+//   }
+//   if (Serial.available() > 0){
+//   Serial.println("Servo2:");
+//   // servo2pos = Serial.parseInt();
+//   servo2pos = Serial.read();
+//   Serial.println(servo2pos);
+//   }
+// }
