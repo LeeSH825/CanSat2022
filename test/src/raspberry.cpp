@@ -64,7 +64,7 @@ struct ctrl_packet {
   int pos_servo2;
 };
 
-RF24 radio(22,0);
+RF24 radio(24,26);
 uint8_t rf_mode;
 uint8_t address[6] = "00001";
 
