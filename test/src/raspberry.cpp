@@ -151,7 +151,7 @@ int main() {
   	cam_info cam_data;
   	tx_packet tx_data;
 
-	while() {
+	while(true) {
     	ctrl_data = setCTRL();
     	sendPacket(ctrl_data);
     	sensor_data = getSensor();
