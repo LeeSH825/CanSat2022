@@ -66,6 +66,7 @@ struct ctrl_packet {
 
 RF24 radio(22,0);
 uint8_t rf_mode;
+uint8_t address[6] = "00001";
 
 using namespace std;
 
@@ -131,14 +132,16 @@ sensor_info getSensor() {
     ret.gyro_y = received.gyro_y;
     ret.gyro_z = received.gyro_z;
   }
+
+  return ret;
 }
 
-void main() {
+int main() {
 	if(!radio.begin()){
 		cout << "radio not responding!" << endl;
 		return 0;
 	}
-	uint8_t address[6] = "00001";
+
 	radio.setPALevel(POWER_MODE);
 	setRF_Mode('t');
   	rf_mode = 1;
@@ -149,9 +152,9 @@ void main() {
   	tx_packet tx_data;
 
 	while() {
-    ctrl_data = setCTRL();
-    sendPacket(&ctrl_data);
-    sensor_data = getSensor();
+    	ctrl_data = setCTRL();
+    	sendPacket(ctrl_data);
+    	sensor_data = getSensor();
 
 		// 입력 없으면 ctrl_data에 암것도 안넣고 고
 		// 입력모드로 바꿈
