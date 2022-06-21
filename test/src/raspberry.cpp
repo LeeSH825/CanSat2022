@@ -20,7 +20,7 @@ struct sensor_info {
 };
 
 struct sensor_packet {
-  byte change_rf_mode;
+  uint8_t change_rf_mode;
 
   int gyro_x;
   int gyro_y;
@@ -38,7 +38,7 @@ struct cam_info {
 };
 
 struct tx_packet {
-  byte change_rf_mode;
+  uint8_t change_rf_mode;
 
   int gyro_x;
   int gyro_y;
@@ -59,15 +59,17 @@ struct ctrl_info {
 };
 
 struct ctrl_packet {
-  byte change_rf_mode;
+  uint8_t change_rf_mode;
   int pos_servo1;
   int pos_servo2;
 };
 
+RF24 radio(22,0);
+uint8_t rf_mode;
+
 using namespace std;
 
-RF24 radio(22,0);
-byte rf_mode;
+
 
 void setRF_Mode(char mode) {
   if (mode == 'r') {
@@ -136,7 +138,7 @@ void main() {
 		cout << "radio not responding!" << endl;
 		return 0;
 	}
-	uint8_t address = "00001";
+	uint8_t address[6] = "00001";
 	radio.setPALevel(POWER_MODE);
 	setRF_Mode('t');
   	rf_mode = 1;
