@@ -25,15 +25,15 @@
 
 //Flags
 // #define STATION
-#define CANSAT
+// #define CANSAT
 
-#define CE_PIN 7
-#define CSN_PIN 8
+// #define CE_PIN 7
+// #define CSN_PIN 8
 
-#define SERVO1_PIN 6
-#define SERVO2_PIN 3
+// #define SERVO1_PIN 6
+// #define SERVO2_PIN 3
 
-#define POWER_MODE RF24_PA_MIN
+// #define POWER_MODE RF24_PA_MIN
 
 
 // Data Structure
@@ -195,6 +195,19 @@ void sendPacket(tx_packet transmit) {
   setRF_Mode('r');
   Serial.println("Sent:");
 }
+
+void sendPacket(ctrl_info transmit) {
+  ctrl_packet tr;
+  if (rf_mode != 1)
+    setRF_Mode('t');
+  tr.change_rf_mode = 1;
+  tr.pos_servo1 = transmit.pos_servo1;
+  tr.pos_servo2 = transmit.pos_servo2;
+  radio.write(&tr, sizeof(ctrl_packet));
+  setRF_Mode('r');
+  Serial.println("Sent:");
+}
+
   // int servo1pos, servo2pos;
 ctrl_info getCTRLfromSerial() {
   int servo1pos = 0;
@@ -232,6 +245,50 @@ ctrl_info getCTRLfromSerial() {
   return (ret);
 }
 
+sensor_info receiveSensor() {
+  sensor_packet received;
+  sensor_info ret;
+
+  if (rf_mode != 0)
+    setRF_Mode('r');
+  if (radio.available()) {
+    radio.read(&received, sizeof(sensor_packet));
+
+    ret.accel_x = received.accel_x;
+    ret.accel_y = received.accel_y;
+    ret.accel_z = received.accel_z;
+    ret.gyro_x = received.gyro_x;
+    ret.gyro_y = received.gyro_y;
+    ret.gyro_z = received.gyro_z;
+    ret.tempetature = received.temperature;
+
+    Serial.println("Packet Received:");
+    Serial.print("accel_x:");
+    Serial.print(ret.accel_x);
+    Serial.print(" accel_y:");
+    Serial.print(ret.accel_y);
+    Serial.print(" accel_z");
+    Serial.println(ret.accel_z);
+    
+    Serial.print("gyro_x:");
+    Serial.print(ret.gyro_x);
+    Serial.print(" gyro_y:");
+    Serial.print(ret.gyro_y);
+    Serial.print(" gyro_z:");
+    Serial.println(ret.gyro_z);
+
+    Serial.print("Temp:");
+    Serial.print(ret.tempetature);
+
+    //모드 변환
+    if (received.change_rf_mode = 1) {
+      rf_mode = !(rf_mode);
+      setRF_Mode('t');
+    }
+    return ret;
+  }
+}
+
 void setup() {
   Serial.begin(9600);
 
@@ -264,19 +321,23 @@ void loop() {
   tx_packet tx_data;
 
 
-  // ctrl_data = getCTRL();
+  
   // 임시
-  ctrl_data = getCTRLfromSerial();
-
+  #ifdef CANSAT
+  // ctrl_data = getCTRLfromSerial();
+  ctrl_data = getCTRL();
   adjustMotor(ctrl_data);
-
   sensor_data = getSensors();
   //cam_data = getCam();
-
   add_packet(&tx_data, sensor_data);
   //add_packet(&tx_data, cam_data);
-
   sendPacket(tx_data);
+  #endif
+  #ifdef STATION
+  ctrl_data = getCTRLfromSerial();
+  sendPacket(ctrl_data);
+  sensor_data = receiveSensor();
+  #endif
 }
 
 // void serial_loop() {
