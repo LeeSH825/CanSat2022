@@ -1,0 +1,244 @@
+r: gyro_y648gyro_z-44
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:400 accel_y:-3400 accel_z14628
+gyro_x:3060gyro_y4046gyro_z-2594
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:760 accel_y:-5768 accel_z12408
+gyro_x:1165gyro_y-211gyro_z55
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:316 accel_y:-6576 accel_z12032
+gyro_x:-29gyro_y-776gyro_z756
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:-5120 accel_y:-5640 accel_z17620
+gyro_x:-4972gyro_y2139gyro_z-5507
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:-3236 accel_y:-7272 accel_z9836
+gyro_x:89gyro_y1981gyro_z1579
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:-680 accel_y:-4368 accel_z12652
+gyro_x:-1507gyro_y1452gyro_z-765
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:-1200 accel_y:-4952 accel_z12408
+gyro_x:-746gyro_y-637gyro_z1463
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:-880 accel_y:-5652 accel_z12672
+gyro_x:-164gyro_y581gyro_z2065
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:6352 accel_y:-4576 accel_z10584
+gyro_x:2535gyro_y4891gyro_z12629
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:-136 accel_y:-4916 accel_z11360
+gyro_x:2538gyro_y-2868gyro_z-862
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:4252 accel_y:-3740 accel_z12820
+gyro_x:-957gyro_y-1055gyro_z-550
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:2024 accel_y:-2344 accel_z13356
+gyro_x:6997gyro_y-83gyro_z1734
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:376 accel_y:-2132 accel_z14048
+gyro_x:-316gyro_y-31gyro_z-950
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:2692 accel_y:-6380 accel_z8128
+gyro_x:-5922gyro_y1311gyro_z-1300
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:4864 accel_y:-15376 accel_z-9620
+gyro_x:-13355gyro_y337gyro_z-1697
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:-1092 accel_y:-320 accel_z20460
+gyro_x:-18793gyro_y718gyro_z-12170
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:4880 accel_y:4432 accel_z14392
+gyro_x:-742gyro_y-19182gyro_z20131
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:10904 accel_y:9652 accel_z10696
+gyro_x:4340gyro_y2527gyro_z-1955
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:464 accel_y:-4768 accel_z13088
+gyro_x:218gyro_y181gyro_z36
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:472 accel_y:-4568 accel_z13316
+gyro_x:11gyro_y-106gyro_z17
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:424 accel_y:-4564 accel_z13268
+gyro_x:33gyro_y-133gyro_z-24
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:440 accel_y:-4564 accel_z13404
+gyro_x:25gyro_y-114gyro_z-37
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:388 accel_y:-4516 accel_z13248
+gyro_x:29gyro_y-123gyro_z-18
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:480 accel_y:-4532 accel_z13304
+gyro_x:8gyro_y-110gyro_z-26
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:356 accel_y:-4460 accel_z13364
+gyro_x:15gyro_y-127gyro_z-35
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:368 accel_y:-4408 accel_z13328
+gyro_x:16gyro_y-135gyro_z-19
+type PRESET: 
+Tx Mode
+Sending Packet..
+Rx Mode
+Sent:    1:0    2: 0
+Receive Sensor: 
+Packet Received:
+accel_x:372 accel_y:-4512 accel_z13156
+gyro_x:48gyro_y-
