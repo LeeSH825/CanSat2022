@@ -1,0 +1,3 @@
+/home/jetson/jetson-stereo-depth/detph_pipeline_cpp/build/CMakeFiles/rebuild_cache.dir
+/home/jetson/jetson-stereo-depth/detph_pipeline_cpp/build/CMakeFiles/edit_cache.dir
+/home/jetson/jetson-stereo-depth/detph_pipeline_cpp/build/CMakeFiles/depth_pipeline.dir
